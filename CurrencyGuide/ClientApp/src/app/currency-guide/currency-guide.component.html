@@ -1,0 +1,27 @@
+<p *ngIf="!currencies"><em>Loading...</em></p>
+
+<div class="caption-top"><em>Welcome to the Currency Guide. Choose both currencies to proceed</em> <img *ngIf="bothCurrenciesSet" src="v.jpg"></div>
+
+Convert from: <select (change)="reload($event)" [(ngModel)]="currencyFrom" id="currencyFrom"  class="currency-from">
+  <option *ngFor="let cur of currencies" [value]="cur.id">{{cur.iso}}</option>
+</select>
+to: <select (change)="reload($event)" [(ngModel)]="currencyTo" id="currencyTo" class="currency-to">
+  <option *ngFor="let cur of currencies" [value]="cur.id">{{cur.iso}}</option>
+</select>
+<img class="switch" src="switch.jpg" (click)="switchCurrencies($event)">
+    <div class="expansion-panel">
+      <mat-expansion-panel (opened)="openPanel($event)"
+                           (closed)="closePanel($event)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Expand it to search for historical data
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          <input [(ngModel)]="date" [max]="maxDate" matInput [matDatepicker]="picker" (dateChange)="reload($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-expansion-panel>
+    </div>
+<div *ngIf="bothCurrenciesSet" >
+  <input class="count-input" type="number" min="0" [(ngModel)]="countToChange"><span class="result-text"> {{currencyNames[currencyFrom]}} can be changed to {{countToChange * conversionRate | number : '1.2-4'}} {{currencyNames[currencyTo]}}</span>
+</div>

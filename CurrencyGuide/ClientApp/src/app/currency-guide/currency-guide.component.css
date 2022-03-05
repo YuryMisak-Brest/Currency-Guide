@@ -1,0 +1,26 @@
+.caption-top {
+  height: 20px;
+  padding-bottom: 45px;
+}
+
+input {
+  width: 100px;
+}
+
+.expansion-panel {
+  width: 335px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 48px 0 0;
+}
+::ng-deep .mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+img {
+  margin-left: 5px;
+  margin-bottom: 4px;
+}
+.switch {
+  cursor: pointer;
+}
