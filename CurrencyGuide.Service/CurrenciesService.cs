@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using CurrencyGuide.Models.Interfaces;
 using CurrencyGuide.Storage.Domain;
@@ -19,7 +20,7 @@ namespace CurrencyGuide.Service
 		}
 		public IEnumerable<Currency> Get()
 		{
-			return _mapper.Map<IEnumerable<Currency>>(_currencyRepository.Get());
+			return _mapper.Map<IEnumerable<Currency>>(_currencyRepository.Get().OrderBy(x => x.Iso));
 		}
 	}
 }
